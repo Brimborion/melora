@@ -1,0 +1,104 @@
+# generated: 15-03-2026 00:00
+# project: melora
+# project_key: NOKEY
+# tracking_system: file-system
+# story_location: "{project-root}/_bmad-output/implementation-artifacts"
+
+# STATUS DEFINITIONS:
+# ==================
+# Epic Status:
+#   - backlog: Epic not yet started
+#   - in-progress: Epic actively being worked on
+#   - done: All stories in epic completed
+#
+# Epic Status Transitions:
+#   - backlog → in-progress: Automatically when first story is created (via create-story)
+#   - in-progress → done: Manually when all stories reach 'done' status
+#
+# Story Status:
+#   - backlog: Story only exists in epic file
+#   - ready-for-dev: Story file created in stories folder
+#   - in-progress: Developer actively working on implementation
+#   - review: Ready for code review (via Dev's code-review workflow)
+#   - done: Story completed
+#
+# Retrospective Status:
+#   - optional: Can be completed but not required
+#   - done: Retrospective has been completed
+#
+# WORKFLOW NOTES:
+# ===============
+# - Epic transitions to 'in-progress' automatically when first story is created
+# - Stories can be worked in parallel if team capacity allows
+# - SM typically creates next story after previous one is 'done' to incorporate learnings
+# - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
+
+generated: 15-03-2026 00:00
+project: melora
+project_key: NOKEY
+tracking_system: file-system
+story_location: "{project-root}/_bmad-output/implementation-artifacts"
+
+development_status:
+  # Epic 1: User Setup & Preferences
+  epic-1: done
+  1-0-project-setup-from-starter-template: done
+  1-1-initial-user-setup: done
+  1-2-profile-viewing: done
+  1-3-preference-modification: done
+  1-4-account-deletion: done
+  epic-1-retrospective: optional
+
+  # Epic 2: Exercise & Audio System
+  epic-2: in-progress
+  2-1-exercise-library-access: done
+  2-2-audio-playback-system: done
+  2-3-exercise-launch-and-completion: done
+  2-4-exercise-pause-and-resume: done
+  2-5-real-time-pitch-detection: done
+  2-6-microphone-permission-handling: done
+  2-7-exercise-replay-and-explanations: done
+  2-8-level-1-interval-recognition-unison-octave: backlog
+  2-9-level-1-interval-recognition-fifth: backlog
+  2-10-level-1-interval-recognition-major-third: backlog
+  2-11-level-1-harmonic-resolution-vi: backlog
+  2-12-level-1-assessment-synthesis: backlog
+  epic-2-retrospective: optional
+
+  # Epic 3: Progress Tracking
+  epic-3: backlog
+  3-1-score-recording: backlog
+  3-2-progress-statistics: backlog
+  3-3-strengths-and-weaknesses-analysis: backlog
+  3-4-chapter-and-level-completion-tracking: backlog
+  3-5-offline-progress-saving: backlog
+  3-6-progress-sync-post-mvp: backlog
+  epic-3-retrospective: optional
+
+  # Epic 4: Gamification & Journey
+  epic-4: backlog
+  4-1-journey-map-navigation: backlog
+  4-2-chapter-unlocking: backlog
+  4-3-rewards-and-achievements: backlog
+  4-4-daily-challenges: backlog
+  4-5-profile-customization: backlog
+  4-6-tutorial-access: backlog
+  epic-4-retrospective: optional
+
+  # Epic 5: Content Management
+  epic-5: backlog
+  5-1-exercise-loading-by-chapter-level: backlog
+  5-2-musical-context-management: backlog
+  5-3-exercise-categorization: backlog
+  5-4-random-exercise-generation: backlog
+  5-5-content-localization-post-mvp: backlog
+  epic-5-retrospective: optional
+
+  # Epic 6: System Infrastructure
+  epic-6: backlog
+  6-1-offline-resource-caching: backlog
+  6-2-app-updates: backlog
+  6-3-error-handling-and-recovery: backlog
+  6-4-performance-optimization: backlog
+  6-5-push-notifications-post-mvp: backlog
+  epic-6-retrospective: optional

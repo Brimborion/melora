@@ -1,0 +1,123 @@
+@import "tailwindcss";
+
+/*
+  Art Nouveau "Mystical Orient" Design System
+  Theme colors from architecture specification
+*/
+
+@theme {
+  /* Primary Colors */
+  --color-primary: #2D1B4E;
+  --color-primary-light: #4A3270;
+  --color-primary-dark: #1A0F35;
+  
+  /* Secondary Colors */
+  --color-secondary: #D4AF37;
+  --color-secondary-light: #E5C76B;
+  --color-secondary-dark: #B8962E;
+  
+  /* Accent Colors */
+  --color-accent-teal: #1A5F5F;
+  --color-accent-burgundy: #722F37;
+  
+  /* Neutral Colors */
+  --color-warm-cream: #F5E6D3;
+  --color-soft-rose: #E8B4B8;
+  --color-dark-bg: #1A1A2E;
+  
+  /* Status Colors */
+  --color-success: #2ECC71;
+  --color-error: #E74C3C;
+  --color-warning: #F39C12;
+  --color-info: #3498DB;
+  
+  /* Typography */
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  
+  /* Breakpoints */
+  --breakpoint-mobile: 320px;
+  --breakpoint-tablet: 768px;
+  --breakpoint-desktop: 1024px;
+}
+
+/* Base styles */
+html {
+  font-family: var(--font-body);
+  background-color: var(--color-dark-bg);
+  color: var(--color-warm-cream);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+}
+
+/* Custom utility classes */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-soft-rose) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .bg-card {
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    border-radius: 0.5rem;
+  }
+  
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-dark-bg;
+  }
+}
+
+/* Text size utility classes */
+:root {
+  --text-base: 1rem;
+}
+
+.text-size-small {
+  --text-base: 0.875rem;
+}
+
+.text-size-medium {
+  --text-base: 1rem;
+}
+
+.text-size-large {
+  --text-base: 1.25rem;
+}
+
+/* Apply text size to body */
+html {
+  font-size: var(--text-base);
+}
+
+/* High contrast mode - WCAG AAA (7:1 contrast) */
+html.high-contrast {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+html.high-contrast .nav-bar {
+  background-color: #000000;
+  border-bottom: 2px solid #ffff00;
+}
+
+html.high-contrast .nav-bar__link,
+html.high-contrast .nav-bar__logo {
+  color: #ffffff;
+}
+
+html.high-contrast a:focus,
+html.high-contrast button:focus {
+  outline: 3px solid #00ffff;
+  outline-offset: 2px;
+}
+
+/* Reduced motion */
+html.reduced-motion * {
+  animation: none !important;
+  transition: none !important;
+}

@@ -83,7 +83,7 @@ dateCompleted: "2026-03-01"
 
 **Content Management:**
 - FR39: System can load exercises by chapter and level
-- FR40: System can manage different musical contexts (6 chapters)
+- FR40: System can manage different musical contexts (chapters)
 - FR41: System can organize exercises by pedagogical progression
 - FR42: System can add new exercises and content
 - FR43: System can manage translations and localizations
@@ -207,7 +207,7 @@ dateCompleted: "2026-03-01"
 | FR37 | Share accomplishments | Epic 4 - Story 4.5 | ✅ Covered |
 | FR38 | Access integrated tutorials | Epic 4 - Story 4.6 | ✅ Covered |
 | FR39 | Load exercises by chapter and level | Epic 5 - Story 5.1 | ✅ Covered |
-| FR40 | Manage musical contexts (6 chapters) | Epic 5 - Story 5.2 | ✅ Covered |
+| FR40 | Manage musical contexts (chapters) | Epic 5 - Story 5.2 | ✅ Covered |
 | FR41 | Organize by pedagogical progression | Epic 5 - Story 5.1 | ✅ Covered |
 | FR42 | Add new exercises and content | Epic 5 - Story 5.4 | ✅ Covered |
 | FR43 | Manage translations and localizations | Epic 5 - Story 5.5 | ✅ Covered |

@@ -6,6 +6,6 @@
 
 # Core Configuration Values
 user_name: Charles
-communication_language: Français
+communication_language: French
 document_output_language: English
 output_folder: "{project-root}/_bmad-output"

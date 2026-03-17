@@ -1,8 +1,8 @@
 ---
 stepsCompleted: ["step-01-validate-prerequisites", "step-02-design-epics", "step-03-create-stories", "step-04-final-validation"]
-inputDocuments: ["/home/charles/Dev/melora/_bmad-output/planning-artifacts/prd.md", "/home/charles/Dev/melora/_bmad-output/planning-artifacts/architecture.md", "/home/charles/Dev/melora/_bmad-output/planning-artifacts/ux-design-specification.md"]
+inputDocuments: ["/home/charles/Dev/melora/_bmad-output/planning-artifacts/prd.md", "/home/charles/Dev/melora/_bmad-output/planning-artifacts/architecture.md", "/home/charles/Dev/melora/_bmad-output/planning-artifacts/ux-design-specification.md", "/home/charles/Dev/melora/_bmad-output/planning-artifacts/chapter-1-level-1.md"]
 workflowStatus: "complete"
-dateCompleted: "2026-03-01"
+dateCompleted: "2026-03-15"
 ---
 
 # melora - Epic Breakdown
@@ -62,12 +62,23 @@ This document provides the complete epic and story breakdown for melora, decompo
 
 **Content Management (FR39-FR45):**
 - FR39: System can load exercises by chapter and level
-- FR40: System can manage different musical contexts (6 chapters: folk, blues, Celtic, classical, modal, jazz)
+- FR40: System can manage different musical contexts
 - FR41: System can organize exercises by pedagogical progression
 - FR42: System can add new exercises and content
 - FR43: System can manage translations and localizations
 - FR44: System can categorize exercises by type (intervals, chords, etc.)
 - FR45: System can generate random exercises based on rules
+
+**Level 1: Intervals & Triads (Chapter 1) (FR54-FR62):**
+- FR54: System can present Level 1 exercises for interval recognition
+- FR55: System can distinguish between Unison, Octave, Fifth, and Major Third
+- FR56: System can play harmonic intervals (simultaneous notes)
+- FR57: System can play melodic intervals (successive notes)
+- FR58: System can guide users through audiation exercises
+- FR59: System can evaluate user's interval identification accuracy
+- FR60: System can teach V → I harmonic resolution
+- FR61: System can provide ascending and descending interval singing exercises
+- FR62: System can assess melodic recognition in context
 
 **System Management (FR46-FR53):**
 - FR46: System can manage accessibility preferences (WCAG Level A)
@@ -182,6 +193,14 @@ This document provides the complete epic and story breakdown for melora, decompo
 - Encouraging error messages (never punitive)
 - Minimum 44x44px touch targets
 
+**From Chapter 1 Level 1 - Pedagogical Requirements:**
+- Level 1 focuses on interval recognition: Unison, Octave, Fifth, Major Third
+- 6 Lessons: L1 (Unison/Octave), L2 (Melodic Fifth), L3 (Harmonic Fifth), L4 (Melodic Third), L5 (Harmonic Third), L6 (Assessment)
+- 9 Exercises: Ex1 (Audiation), Ex2 (Melodic ID), Ex3 (Harmonic ID), Ex4 (Resolution), Ex5 (Descending), Ex6 (Ascending), Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition), Ex9 (Interval in Melody)
+- Learning Objectives: O1 (ear differentiation), O2 (major triad notes), O3 (V→I resolution), O4 (3-note melody)
+- Audio patterns: Alternating L-H-L and H-L-H for melodic intervals
+- Support both harmonic (simultaneous) and melodic (successive) intervals
+
 **From PRD - MVP Scope:**
 - Basic ear training exercises (intervals, simple chords)
 - Clean interface with visible progression
@@ -239,18 +258,29 @@ This document provides the complete epic and story breakdown for melora, decompo
 | FR37 | Epic 4 | Share accomplishments |
 | FR38 | Epic 4 | Access integrated tutorials |
 | FR39 | Epic 5 | Load exercises by chapter and level |
-| FR40 | Epic 5 | Manage musical contexts (6 chapters) |
+| FR40 | Epic 5 | Manage musical contexts (chapters) |
 | FR41 | Epic 5 | Organize by pedagogical progression |
 | FR42 | Epic 5 | Add new exercises and content |
 | FR43 | Epic 5 | Manage translations and localizations |
 | FR44 | Epic 5 | Categorize by exercise type |
 | FR45 | Epic 5 | Generate random exercises |
+| FR46 | Epic 1 | Manage accessibility preferences |
+| FR47 | Epic 1 | Detect and adapt to browser capabilities |
 | FR48 | Epic 6 | Manage resource caching for offline |
 | FR49 | Epic 6 | Manage updates and versions |
 | FR50 | Epic 6 | Manage permissions and data security |
 | FR51 | Epic 6 | Manage performance and optimizations |
 | FR52 | Epic 6 | Manage errors and automatic recovery |
 | FR53 | Epic 6 | Manage push notifications |
+| FR54 | Epic 2 | Present Level 1 exercises for interval recognition |
+| FR55 | Epic 2 | Distinguish Unison, Octave, Fifth, Major Third |
+| FR56 | Epic 2 | Play harmonic intervals (simultaneous notes) |
+| FR57 | Epic 2 | Play melodic intervals (successive notes) |
+| FR58 | Epic 2 | Guide users through audiation exercises |
+| FR59 | Epic 2 | Evaluate user's interval identification accuracy |
+| FR60 | Epic 2 | Teach V → I harmonic resolution |
+| FR61 | Epic 2 | Provide ascending/descending interval singing |
+| FR62 | Epic 2 | Assess melodic recognition in context |
 
 ## Epic List
 
@@ -345,8 +375,8 @@ This document provides the complete epic and story breakdown for melora, decompo
 
 ### Epic 2: Exercise & Audio System
 **Goal:** Users can complete ear training exercises with real-time audio feedback.
-**FRs covered:** FR8, FR9, FR10, FR11, FR12, FR13, FR14, FR15, FR16, FR17, FR18, FR19, FR20, FR21, FR22
-**User Outcome:** Users can browse exercises, start/pause/resume exercises, hear audio samples, detect pitch, and receive immediate feedback.
+**FRs covered:** FR8, FR9, FR10, FR11, FR12, FR13, FR14, FR15, FR16, FR17, FR18, FR19, FR20, FR21, FR22, FR54, FR55, FR56, FR57, FR58, FR59, FR60, FR61, FR62
+**User Outcome:** Users can browse exercises, start/pause/resume exercises, hear audio samples, detect pitch, and receive immediate feedback. Level 1 specific: Users can recognize Unison, Octave, Fifth, and Major Third intervals through melodical and harmonic exercises.
 
 #### Story 2.1: Exercise Library Access
 **As a** user,
@@ -468,6 +498,139 @@ This document provides the complete epic and story breakdown for melora, decompo
 **When** they view the explanation
 **Then** they see a clear explanation of the correct answer
 **And** the explanation is encouraging, not punitive
+
+#### Story 2.8: Level 1 - Interval Recognition (Unison & Octave)
+**As a** beginner user,
+**I want** to learn to recognize Unison and Octave intervals,
+**So that** I can develop my foundational ear training skills.
+
+**Acceptance Criteria:**
+
+**Given** the user starts Lesson 1
+**When** they hear a harmonic interval (two notes played simultaneously)
+**Then** the system plays Unison and Octave examples
+**And** the user can replay each example
+
+**Given** the user is in Exercise 1 (Audiation)
+**When** the system plays a reference note
+**Then** the user imagines the octave note before hearing it
+**And** the system confirms correct audiation
+
+**Given** the user is in Exercise 3 (Harmonic Identification)
+**When** the system plays Unison or Octave
+**Then** the user can correctly identify the interval
+**And** feedback is provided for each answer
+
+**Lessons covered:** L1 (Unison and Octave)
+**Exercises covered:** Ex1 (Audiation), Ex3 (Harmonic Identification), Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition)
+
+#### Story 2.9: Level 1 - Interval Recognition (Fifth)
+**As a** user,
+**I want** to learn to recognize the Perfect Fifth interval,
+**So that** I can distinguish it from other intervals.
+
+**Acceptance Criteria:**
+
+**Given** the user starts Lesson 2
+**When** they hear C followed by G
+**Then** the system explains the "fifth" sensation (stability, completeness)
+
+**Given** the user is in Exercise 2 (Melodic Identification)
+**When** the system plays a melodic pattern
+**Then** the user identifies if it's a Fifth or Octave
+**And** the pattern alternates between Low-High-Low and High-Low-High
+
+**Given** the user is in Exercise 4 (Introduction to Resolution)
+**When** the system plays C-E-G-G (V-I cadence)
+**Then** the user sings the root note C
+**And** feels the V→I resolution
+
+**Given** the user is in Exercise 5 & 6 (Descending/Ascending Singing)
+**When** the system gives a starting note
+**Then** the user sings the Fifth interval
+**And** the system evaluates pitch accuracy
+
+**Lessons covered:** L2 (The Melodic Fifth), L3 (The Harmonic Fifth)
+**Exercises covered:** Ex2 (Melodic ID), Ex4 (Resolution), Ex5 (Descending), Ex6 (Ascending)
+
+#### Story 2.10: Level 1 - Interval Recognition (Major Third)
+**As a** user,
+**I want** to learn to recognize the Major Third interval,
+**So that** I can complete the basic interval recognition set.
+
+**Acceptance Criteria:**
+
+**Given** the user starts Lesson 4
+**When** they hear C followed by E
+**Then** the system explains the "joyful" sensation of the Major Third
+
+**Given** the user is in Exercise 2 (Melodic Identification)
+**When** the system plays Third/Fifth/Octave patterns
+**Then** the user identifies the correct interval
+**And** receives feedback on each answer
+
+**Given** the user is in Exercise 5 & 6 (Singing)
+**When** the system gives a starting note
+**Then** the user sings the Major Third interval ascending and descending
+**And** the system evaluates accuracy
+
+**Lessons covered:** L4 (The Melodic Major Third), L5 (The Harmonic Major Third)
+**Exercises covered:** Ex2 (Melodic ID), Ex5 (Descending), Ex6 (Ascending)
+
+#### Story 2.11: Level 1 - Harmonic Resolution (V→I)
+**As a** user,
+**I want** to understand harmonic resolution (V→I),
+**So that** I can feel how chords resolve in music.
+
+**Acceptance Criteria:**
+
+**Given** the user is in Exercise 4
+**When** the system plays C-E-G-G
+**Then** the user identifies G as the note to sing
+**And** feels the resolution from dominant to tonic
+
+**Given** the system plays various V→I progressions
+**When** the user sings the root note
+**Then** the accuracy is evaluated
+**And** encouraging feedback is provided
+
+**Lessons covered:** L2, L3
+**Exercises covered:** Ex4 (Introduction to Resolution)
+
+#### Story 2.12: Level 1 - Assessment & Synthesis
+**As a** user,
+**I want** to complete the Level 1 assessment,
+**So that** I can demonstrate my interval recognition skills.
+
+**Acceptance Criteria:**
+
+**Given** the user completes Lessons 1-5
+**When** they start Lesson 6 (Synthesis)
+**Then** they see Exercise 7, 8, and 9
+
+**Given** the user is in Exercise 7 (Melodic Recognition)
+**When** the system plays a melodic interval
+**Then** the user identifies Third, Fifth, Octave, or Unison
+**And** the starting note varies randomly
+
+**Given** the user is in Exercise 8 (Harmonic Recognition)
+**When** the system plays harmonic intervals
+**Then** the user identifies the interval
+**And** receives a final score
+
+**Given** the user is in Exercise 9 (Interval in Melody)
+**When** the system plays C-E-...
+**Then** the user completes with G (forming a triad)
+**And** demonstrates melodic context understanding
+
+**Given** all exercises are completed
+**When** the user finishes Level 1
+**Then** the level is marked as complete
+**And** progress is saved to IndexedDB
+**And** Chapter 1 completion is tracked
+
+**Lessons covered:** L6 (Synthesis)
+**Exercises covered:** Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition), Ex9 (Interval in Melody)
 
 ### Epic 3: Progress Tracking
 **Goal:** Users can track their musical development and view detailed statistics.

@@ -17,7 +17,7 @@ Melora transforms ear training from a tedious technical process into an engaging
 **Unique Value Proposition:** Innovative combination of gamification with musical contexts, and 5-minute micro-experiences that transform ear training into an engaging journey.
 
 **Key Differentiators:**
-- **Contextual Approach:** 6 chapters representing different musical universes (folk, blues, Celtic, classical, modal, jazz)
+- **Contextual Approach:** chapters representing different musical universes
 - **Gamification:** Journey map, visual progression, rewards (badges, achievements)
 - **Micro-Experiences:** Maximum 5-minute sessions with immediate sense of accomplishment
 - **Accessibility:** Full support for blind users (WCAG Level A)
@@ -275,12 +275,51 @@ Melora transforms ear training from a tedious technical process into an engaging
 ### Content Management
 
 - FR39: System can load exercises by chapter and level
-- FR40: System can manage different musical contexts (6 chapters)
+- FR40: System can manage different musical contexts (chapters)
 - FR41: System can organize exercises by pedagogical progression
 - FR42: System can add new exercises and content
 - FR43: System can manage translations and localizations
 - FR44: System can categorize exercises by type (intervals, chords, etc.)
 - FR45: System can generate random exercises based on rules
+- FR54: System can present Level 1 exercises for interval recognition
+- FR55: System can distinguish between Unison, Octave, Fifth, and Major Third
+- FR56: System can play harmonic intervals (simultaneous notes)
+- FR57: System can play melodic intervals (successive notes)
+- FR58: System can guide users through audiation exercises
+- FR59: System can evaluate user's interval identification accuracy
+- FR60: System can teach V → I harmonic resolution
+- FR61: System can provide ascending and descending interval singing exercises
+- FR62: System can assess melodic recognition in context
+
+### Level 1: Intervals & Triads (Chapter 1)
+
+**Level 1 Overview:**
+This is the first level of Melora's ear training journey. It introduces fundamental intervals through structured lessons and exercises.
+
+**Learning Objectives:**
+- O1: Differentiate by ear: Unison, Octave, Fifth, Major third
+- O2: Isolate the notes of a major triad (root, third, fifth)
+- O3: Anticipate the resolution of a perfect cadence (V → I)
+- O4: Memorize and transcribe a 3-note melody
+
+**Lessons:**
+- L1: Unison and Octave - Discovery and audiation
+- L2: The Melodic Fifth - Sensations, identification, resolution, singing
+- L3: The Harmonic Fifth - Comparison, identification, audiation
+- L4: The Melodic Major Third - Sensations, identification, singing
+- L5: The Harmonic Major Third - Comparison, identification, audiation
+- L6: Synthesis - Assessment and evaluation
+
+**Exercises:**
+- Exercise 1: Harmonic Interval Audiation - Imagine each note before singing
+- Exercise 2: Melodic Identification - Recognize melodic intervals
+- Exercise 3: Harmonic Identification - Recognize harmonic intervals
+- Exercise 4: Introduction to Resolution - Feel V → I resolution
+- Exercise 5: Descending Interval Singing - Sing descending intervals
+- Exercise 6: Ascending Interval Singing - Sing ascending intervals
+- Exercise 7: Melodic Recognition - Identify melodic intervals
+- Exercise 8: Harmonic Recognition - Identify harmonic intervals
+- Exercise 9: Interval in a Melody - Identify intervals in context
 
 ### System Management
 
