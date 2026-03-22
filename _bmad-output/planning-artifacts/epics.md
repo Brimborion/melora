@@ -292,29 +292,32 @@ This section provides detailed, unit descriptions for each exercise in Chapter 1
 
 ---
 
-#### Exercise 1: Harmonic Interval Audiation
+#### Exercise 1: Harmonic Interval Recognition
 
 **Exercise ID:** Ex1  
-**Type:** Active listening / Mental practice  
-**Objective:** Develop audiation by imagining each note before singing it  
+**Type:** Multiple choice identification  
+**Objective:** Recognize harmonic intervals (Unison or Octave) by ear  
 
 **Description:**  
-The user hears a reference note, then imagines (without singing) the second note of the interval before the system plays it. This exercise builds mental hearing skills and interval awareness.
+The system plays two notes simultaneously (harmonic interval). The user identifies whether the interval is a Unison (same note) or Octave (same note, different octave).
 
 **Mechanics:**
-1. System plays a reference note (e.g., C4)
-2. User waits and internally imagines the target interval note (e.g., C5 - octave)
-3. System plays the target note
-4. User confirms whether their mental image was accurate
+1. System plays two notes simultaneously (e.g., C4 + C5 for Octave, or C4 + C4 for Unison)
+2. User listens to the harmonic interval
+3. User selects: Unison or Octave
+4. Feedback is provided (correct/incorrect)
 
 **Parameters:**
-- Target intervals: Unison, Octave (Level 1)
-- Notes: Random from C, F, G, D, A (pentatonic base)
-- 10 occurrences per exercise session
+- Target intervals: Unison, Octave (Lesson 1)
+- Starting notes: Random (not predetermined)
+- Occurrences: Randomly generated
 
-**Pedagogical purpose:** Develops "hearing in the head" (audiation) before physical vocal production. Foundation for all singing exercises.
+**Pedagogical purpose:** Develops recognition of basic harmonic relationships. Foundation for interval identification.
 
-**Stories covering this exercise:** Story 2.8 (L1)
+**Stories covering this exercise:** 
+- Story 2.8 (L1-PartB): Unison & Octave recognition
+- Story 2.8 (L3-PartC): Fifth audiation
+- Story 2.8 (L5-PartC): Third audiation
 
 ---
 

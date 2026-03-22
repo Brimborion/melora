@@ -112,17 +112,16 @@ status: validated
 
 ---
 
-### Part B: Exercise 1 (Audiation)
+### Part B: Exercise 1 (Harmonic Recognition)
 
-**Type**: Exercise 1 - Harmonic interval audiation
+**Type**: Exercise 1 - Harmonic interval recognition
 
-| # | Low note | High note |
-|---|----------|------------|
-| 1 | C | C (octave) |
-| 2 | F | F (octave) |
-| 3 | G | G (octave) |
-| 4 | D | D (octave) |
-| 5 | A | A (octave) |
+**Objective**: Recognize whether a harmonic interval is a unison or an octave
+
+**Parameters**: 
+- Target intervals: Unison, Octave
+- Starting notes: Random
+- Occurrences: Randomly generated (not predetermined)
 
 ---
 

@@ -1,5 +1,5 @@
 # generated: 22-03-2026 00:00
-# last_updated: 22-03-2026 00:00
+# last_updated: 22-03-2026 06:45
 # project: melora
 # project_key: MELORA
 # tracking_system: file-system
@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 22-03-2026 00:00
-last_updated: 22-03-2026 00:00
+last_updated: 22-03-2026 06:30
 project: melora
 project_key: MELORA
 tracking_system: file-system
@@ -60,11 +60,6 @@ development_status:
   2-5-real-time-pitch-detection: done
   2-6-microphone-permission-handling: done
   2-7-exercise-replay-and-explanations: done
-  2-8-level-1-interval-recognition-unison-octave: ready-for-dev
-  2-9-level-1-interval-recognition-fifth: backlog
-  2-10-level-1-interval-recognition-major-third: backlog
-  2-11-level-1-harmonic-resolution-vi: backlog
-  2-12-level-1-assessment-synthesis: backlog
   epic-2-retrospective: optional
 
   # Epic 3: Progress Tracking
@@ -131,17 +126,17 @@ sprint_chapter_1_level_1:
 
   # Week 1: Lesson 1 & Lesson 2 Parts B-D
   week_1:
-    name: "Week 1 - Foundation: Audiation & Fifth"
+    name: "Week 1 - Foundation: Recognition & Fifth"
     tasks:
       - task_id: task-1-1
         story: 2-8
         exercise: Ex1
         lesson: L1-PartB
-        title: "Harmonic Interval Audiation (Octave)"
-        description: "Develop audiation by imagining the octave before hearing it"
-        component: Ex1Audiation.svelte
-        patterns: 5
-        status: backlog
+        title: "Harmonic Interval Recognition (Unison & Octave)"
+        description: "Recognize harmonic intervals as Unison or Octave"
+        component: Ex1HarmonicRecognition.svelte
+        patterns: 10
+        status: ready-for-dev
         estimated_hours: 4
         implementation_order: 1
         dependencies: []
