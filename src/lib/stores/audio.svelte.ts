@@ -2,6 +2,7 @@
 // Manages audio playback state and volume preferences using Tone.js + Salamander
 
 import type { Note } from '$lib/types';
+import * as Tone from 'tone';
 import { toneAudioEngine, SALAMANDER_ATTRIBUTION } from '$lib/audio';
 
 /**
@@ -147,7 +148,7 @@ export function createAudioStore() {
 	}
 
 	// Play a chord (multiple notes simultaneously)
-	async function playChord(notes: Note[]): Promise<void> {
+	async function playChord(notes: Note[], duration: Tone.Unit.Time = '2n'): Promise<void> {
 		if (isPlaying) return;
 		if (notes.length === 0) return;
 		
@@ -161,7 +162,7 @@ export function createAudioStore() {
 				isLoading = false;
 			}
 			
-			await toneAudioEngine.playChord(notes);
+			await toneAudioEngine.playChord(notes, duration);
 		} catch (error) {
 			console.error('Error playing chord:', error);
 			throw error;

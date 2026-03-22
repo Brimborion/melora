@@ -183,6 +183,8 @@ This document contains detailed descriptions of exercises for reuse in lessons a
 
 **Principle**: Listen to two simultaneous notes, name the interval
 
+**Sound duration**: The harmonic interval is played for 3 seconds.
+
 ### Parameters
 
 | Parameter | Options |

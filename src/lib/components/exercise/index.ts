@@ -6,3 +6,4 @@ export { default as ScoreDisplay } from './ScoreDisplay.svelte';
 export { default as PauseOverlay } from './PauseOverlay.svelte';
 export { default as ExplanationModal } from './ExplanationModal.svelte';
 export { default as IntervalOptions } from './IntervalOptions.svelte';
+export { default as HarmonicRecognition } from './HarmonicRecognition.svelte';
