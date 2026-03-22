@@ -1,5 +1,5 @@
 # generated: 22-03-2026 00:00
-# last_updated: 22-03-2026 06:45
+# last_updated: 22-03-2026 07:15
 # project: melora
 # project_key: MELORA
 # tracking_system: file-system
@@ -35,7 +35,7 @@
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
 generated: 22-03-2026 00:00
-last_updated: 22-03-2026 06:30
+last_updated: 22-03-2026 07:15
 project: melora
 project_key: MELORA
 tracking_system: file-system
@@ -136,10 +136,12 @@ sprint_chapter_1_level_1:
         description: "Recognize harmonic intervals as Unison or Octave"
         component: Ex1HarmonicRecognition.svelte
         patterns: 10
-        status: ready-for-dev
+        status: validated-ready-for-dev
         estimated_hours: 4
         implementation_order: 1
         dependencies: []
+        validated_at: '2026-03-22'
+        validation_summary: "Fixed 2 critical API issues, added 3 enhancements, 2 optimizations"
 
       - task_id: task-1-2
         story: 2-9
