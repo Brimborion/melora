@@ -51,22 +51,24 @@ export function getRecommendedLevel(
  * Organized by chapter
  */
 export const levels: Level[] = [
-	// Chapter 1: Introduction to Intervals
+	// Chapter 1: Introduction to Intervals - Level 1: Unison & Octave (Story 2-8)
 	{
 		id: '1-1',
-		title: 'Perfect Fifths',
-		description: 'Learn to identify the perfect fifth interval',
+		title: 'Lesson 1: Unison & Octave',
+		description: 'Learn to recognize Unison and Octave intervals - the foundation of ear training',
 		chapter: 1,
 		level: 1,
 		difficulty: 'beginner',
-		exerciseType: 'interval-identification',
+		exerciseType: 'interval-recognition-unison-octave',
 		unlocked: true,
-		requiredScore: 0
+		requiredScore: 0,
+		questionCount: 4
 	},
+	// Chapter 1: Original Perfect Fifths (now moved to later in the chapter)
 	{
 		id: '1-2',
-		title: 'Perfect Fourths',
-		description: 'Learn to identify the perfect fourth interval',
+		title: 'Perfect Fifths',
+		description: 'Learn to identify the perfect fifth interval',
 		chapter: 1,
 		level: 2,
 		difficulty: 'beginner',
@@ -76,6 +78,17 @@ export const levels: Level[] = [
 	},
 	{
 		id: '1-3',
+		title: 'Perfect Fourths',
+		description: 'Learn to identify the perfect fourth interval',
+		chapter: 1,
+		level: 3,
+		difficulty: 'beginner',
+		exerciseType: 'interval-identification',
+		unlocked: false,
+		requiredScore: 70
+	},
+	{
+		id: '1-4',
 		title: 'Major Thirds',
 		description: 'Learn to identify major third intervals',
 		chapter: 1,
@@ -86,7 +99,7 @@ export const levels: Level[] = [
 		requiredScore: 70
 	},
 	{
-		id: '1-4',
+		id: '1-5',
 		title: 'Minor Thirds',
 		description: 'Learn to identify minor third intervals',
 		chapter: 1,

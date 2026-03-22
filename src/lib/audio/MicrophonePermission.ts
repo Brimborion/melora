@@ -1,7 +1,7 @@
 // MicrophonePermission service for handling microphone permissions
 // Uses Permissions API and getUserMedia for permission management
 
-import { getAudioContext } from './AudioEngine';
+import * as Tone from 'tone';
 
 /**
  * Permission states for microphone access
@@ -143,7 +143,7 @@ export async function getMicrophoneStream(): Promise<MediaStream | null> {
  * Monitors for suspended state changes
  */
 export function setupAudioContextStateMonitoring(): void {
-	const audioContext = getAudioContext();
+	const audioContext = Tone.getContext().rawContext as AudioContext;
 	
 	// Check initial state
 	isAudioContextSuspended = audioContext.state === 'suspended';
@@ -166,11 +166,11 @@ export function getIsAudioContextSuspended(): boolean {
  * @returns Promise<boolean> - true if successfully resumed or already running
  */
 export async function resumeAudioContextIfNeeded(): Promise<boolean> {
-	const audioContext = getAudioContext();
+	const audioContext = Tone.getContext().rawContext as AudioContext;
 	
 	if (audioContext.state === 'suspended') {
 		try {
-			await audioContext.resume();
+			await Tone.start();
 			isAudioContextSuspended = false;
 			return true;
 		} catch (error) {

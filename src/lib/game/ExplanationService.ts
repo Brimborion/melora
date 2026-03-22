@@ -73,6 +73,14 @@ function getRelatedLevels(exerciseType: ExerciseType): string[] {
 	switch (exerciseType) {
 		case 'interval-identification':
 			return ['2-8', '2-9', '2-10'];
+		case 'interval-recognition-unison-octave':
+			return ['2-9', '2-10', '2-11'];
+		case 'audiation':
+			return ['2-8', '2-9', '2-10'];
+		case 'harmonic-identification':
+			return ['2-8', '2-11', '2-12'];
+		case 'melodic-identification':
+			return ['2-8', '2-9', '2-12'];
 		case 'note-identification':
 			return ['2-1', '2-8', '2-9'];
 		case 'chord-identification':
@@ -111,6 +119,44 @@ function getIntervalExplanation(
 		musicalContext: getIntervalMusicalContext(correctAnswer),
 		encouragingNote: getEncouragingNote(wasCorrect, score),
 		relatedLevels: getRelatedLevels('interval-identification')
+	};
+}
+
+/**
+ * Get explanation for Unison/Octave interval answers
+ */
+function getUnisonOctaveExplanation(
+	correctAnswer: string,
+	userAnswer: string,
+	wasCorrect: boolean,
+	score: number
+): Explanation {
+	const intervalDescriptions: Record<string, string> = {
+		'Unison': 'Unison means two notes played at exactly the same pitch. Think of a choir singing the same note - no harmony, just pure unity.',
+		'Octave': 'An octave is the same note one register higher or lower. The note has the same "color" but at a different pitch. Think of "Somewhere Over the Rainbow".'
+	};
+
+	const intervalContexts: Record<string, string> = {
+		'Unison': 'Unison is the most consonant interval - it\'s literally the same pitch! It creates perfect unity in music and is often used for drone effects or group singing.',
+		'Octave': 'Octaves are found everywhere in music. They add richness to melodies without changing the pitch relationship. Pianos span multiple octaves for this reason.'
+	};
+
+	const formattedCorrect = correctAnswer;
+	const formattedUser = userAnswer;
+
+	return {
+		id: crypto.randomUUID(),
+		exerciseType: 'interval-recognition-unison-octave',
+		correctAnswer: formattedCorrect,
+		userAnswer: wasCorrect ? formattedCorrect : formattedUser,
+		wasCorrect,
+		title: wasCorrect 
+			? `${formattedCorrect} - Correct!` 
+			: `The answer was ${formattedCorrect}`,
+		description: intervalDescriptions[correctAnswer] || getIntervalDescription(correctAnswer.toLowerCase()),
+		musicalContext: intervalContexts[correctAnswer] || getIntervalMusicalContext(correctAnswer.toLowerCase()),
+		encouragingNote: getEncouragingNote(wasCorrect, score),
+		relatedLevels: getRelatedLevels('interval-recognition-unison-octave')
 	};
 }
 
@@ -205,6 +251,15 @@ export function getExplanation(
 ): Explanation {
 	switch (exerciseType) {
 		case 'interval-identification':
+			return getIntervalExplanation(correctAnswer, userAnswer, wasCorrect, score);
+		case 'interval-recognition-unison-octave':
+		case 'audiation':
+		case 'harmonic-identification':
+		case 'melodic-identification':
+			// Use Unison/Octave specific explanations for Level 1
+			if (correctAnswer === 'Unison' || correctAnswer === 'Octave') {
+				return getUnisonOctaveExplanation(correctAnswer, userAnswer, wasCorrect, score);
+			}
 			return getIntervalExplanation(correctAnswer, userAnswer, wasCorrect, score);
 		case 'chord-identification':
 			return getChordExplanation(correctAnswer, userAnswer, wasCorrect, score);

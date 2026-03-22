@@ -1,8 +1,8 @@
 // Audio store using Svelte 5 runes
-// Manages audio playback state and volume preferences
+// Manages audio playback state and volume preferences using Tone.js + Salamander
 
-import type { Note, Interval, Chord } from '$lib/types';
-import { sampleLibrary, audioContextManager, ensureAudioReady, getAudioContext } from '$lib/audio';
+import type { Note } from '$lib/types';
+import { toneAudioEngine, SALAMANDER_ATTRIBUTION } from '$lib/audio';
 
 /**
  * Default volume level (0.0 to 1.0)
@@ -12,13 +12,35 @@ const DEFAULT_VOLUME = 0.8;
 /**
  * Create the audio store
  * Manages volume state and provides audio playback methods
+ * Uses ToneAudioEngine with Salamander Sound Library
+ * 
+ * Attribution: Salamander Sound Library by Alexander Holm (CC-BY-3.0)
  */
 export function createAudioStore() {
 	// State using Svelte 5 runes
 	let volume = $state(DEFAULT_VOLUME);
 	let isPlaying = $state(false);
 	let isLoading = $state(false);
+	let isInitialized = $state(false);
 	let currentInstrument = $state<'piano' | 'guitar' | 'violin'>('piano');
+
+	/**
+	 * Initialize the audio engine
+	 * Should be called on first user interaction
+	 */
+	async function initialize(): Promise<void> {
+		if (isInitialized) return;
+		
+		try {
+			isLoading = true;
+			await toneAudioEngine.initialize();
+			isInitialized = true;
+			// Apply saved volume
+			toneAudioEngine.setVolume(volume);
+		} finally {
+			isLoading = false;
+		}
+	}
 
 	// Initialize volume from preferences
 	async function loadVolume(): Promise<void> {
@@ -27,8 +49,10 @@ export function createAudioStore() {
 			const prefs = await db.preferences.get('default');
 			if (prefs && prefs.audioVolume !== undefined) {
 				volume = prefs.audioVolume;
-				// Apply to audio engine
-				audioContextManager.setVolume(volume);
+				// Apply to audio engine if initialized
+				if (isInitialized) {
+					toneAudioEngine.setVolume(volume);
+				}
 			}
 		} catch (error) {
 			console.warn('Failed to load volume preference:', error);
@@ -57,13 +81,13 @@ export function createAudioStore() {
 			});
 			
 			// Apply to audio engine
-			audioContextManager.setVolume(clampedVolume);
+			toneAudioEngine.setVolume(clampedVolume);
 			volume = clampedVolume;
 		} catch (error) {
 			console.warn('Failed to save volume preference:', error);
 			// Still update local state even if persistence fails
 			volume = clampedVolume;
-			audioContextManager.setVolume(clampedVolume);
+			toneAudioEngine.setVolume(clampedVolume);
 		}
 	}
 
@@ -78,16 +102,20 @@ export function createAudioStore() {
 		
 		try {
 			isPlaying = true;
-			isLoading = true;
 			
-			await ensureAudioReady();
-			await sampleLibrary.play(note);
+			// Initialize on first play
+			if (!isInitialized) {
+				isLoading = true;
+				await initialize();
+				isLoading = false;
+			}
+			
+			await toneAudioEngine.playNote(note);
 		} catch (error) {
 			console.error('Error playing note:', error);
 			throw error;
 		} finally {
 			isPlaying = false;
-			isLoading = false;
 		}
 	}
 
@@ -101,24 +129,20 @@ export function createAudioStore() {
 		
 		try {
 			isPlaying = true;
-			isLoading = true;
 			
-			await ensureAudioReady();
+			// Initialize on first play
+			if (!isInitialized) {
+				isLoading = true;
+				await initialize();
+				isLoading = false;
+			}
 			
-			// Play first note
-			await sampleLibrary.play(note1);
-			
-			// Wait for delay
-			await new Promise(resolve => setTimeout(resolve, delay));
-			
-			// Play second note
-			await sampleLibrary.play(note2);
+			await toneAudioEngine.playInterval(note1, note2, delay);
 		} catch (error) {
 			console.error('Error playing interval:', error);
 			throw error;
 		} finally {
 			isPlaying = false;
-			isLoading = false;
 		}
 	}
 
@@ -129,38 +153,26 @@ export function createAudioStore() {
 		
 		try {
 			isPlaying = true;
-			isLoading = true;
 			
-			await ensureAudioReady();
+			// Initialize on first play
+			if (!isInitialized) {
+				isLoading = true;
+				await initialize();
+				isLoading = false;
+			}
 			
-			// Load all samples first
-			const buffers = await Promise.all(
-				notes.map(note => sampleLibrary.loadSample(note))
-			);
-			
-			// Play all notes simultaneously through masterGain for volume control
-			const ctx = getAudioContext();
-			const masterGain = audioContextManager.getMasterGain();
-			
-			buffers.forEach(buffer => {
-				const source = ctx.createBufferSource();
-				source.buffer = buffer;
-				source.connect(masterGain);  // Use masterGain for volume control
-				source.start();
-			});
+			await toneAudioEngine.playChord(notes);
 		} catch (error) {
 			console.error('Error playing chord:', error);
 			throw error;
 		} finally {
 			isPlaying = false;
-			isLoading = false;
 		}
 	}
 
 	// Stop any currently playing audio
 	function stop(): void {
-		// Note: With sample playback, we can't easily stop once started
-		// This is a limitation of using pre-recorded samples
+		// Tone.js handles this internally
 		isPlaying = false;
 		isLoading = false;
 	}
@@ -169,12 +181,18 @@ export function createAudioStore() {
 	function setInstrument(instrument: 'piano' | 'guitar' | 'violin'): void {
 		currentInstrument = instrument;
 		// TODO: Load different sample library for different instruments
+		// For MVP, only piano (Salamander) is supported
 	}
 
 	// Derived: Check if audio is ready
-	let isReady = $derived(audioContextManager.isReady());
+	let isReady = $derived(isInitialized && toneAudioEngine.isReady());
 
-	// Initialize on creation
+	// Get Salamander attribution
+	function getAttribution(): string {
+		return SALAMANDER_ATTRIBUTION;
+	}
+
+	// Initialize on creation (load volume only, don't initialize audio engine yet)
 	loadVolume();
 
 	return {
@@ -182,17 +200,20 @@ export function createAudioStore() {
 		get volume() { return volume; },
 		get isPlaying() { return isPlaying; },
 		get isLoading() { return isLoading; },
+		get isInitialized() { return isInitialized; },
 		get currentInstrument() { return currentInstrument; },
 		get isReady() { return isReady; },
 		
 		// Actions
+		initialize,
 		setVolume,
 		playNote,
 		playInterval,
 		playChord,
 		stop,
 		setInstrument,
-		loadVolume
+		loadVolume,
+		getAttribution
 	};
 }
 

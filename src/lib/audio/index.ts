@@ -1,7 +1,14 @@
 // Audio module exports
-export { audioContextManager, getAudioContext, ensureAudioReady } from './AudioEngine';
-export { sampleLibrary } from './SampleLibrary';
+
+// ToneAudioEngine (Tone.js + Salamander)
+export { ToneAudioEngine, toneAudioEngine, noteToToneJS, isNoteSupported, SALAMANDER_ATTRIBUTION } from './ToneAudioEngine';
+
+// Audio utilities
 export * from './audioUtils';
+
+// Pitch detection
 export { PitchDetector, createPitchDetector } from './PitchDetector';
 export type { PitchInfo } from './PitchDetector';
+
+// Microphone permissions
 export * from './MicrophonePermission';

@@ -6,8 +6,8 @@ export type NoteName = 'C' | 'D' | 'E' | 'F' | 'G' | 'A' | 'B';
 // Accidentals
 export type Accidental = '' | '#' | 'b';
 
-// Octaves (E2 to E5 range for piano)
-export type Octave = 2 | 3 | 4 | 5;
+// Octaves (E2 to C8 range, matching Salamander Sound Library)
+export type Octave = 2 | 3 | 4 | 5 | 6 | 7;
 
 /**
  * Musical note representation

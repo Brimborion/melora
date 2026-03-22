@@ -125,8 +125,8 @@ export function parseNote(noteString: string): Note | null {
 	const [, name, accidental, octaveStr] = match;
 	const octave = parseInt(octaveStr, 10) as Octave;
 	
-	// Validate octave range
-	if (octave < 2 || octave > 5) return null;
+	// Validate octave range (2-7 to match Salamander Sound Library)
+	if (octave < 2 || octave > 7) return null;
 	
 	return {
 		name: name as NoteName,

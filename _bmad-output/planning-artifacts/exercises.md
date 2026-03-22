@@ -12,6 +12,14 @@ This document contains detailed descriptions of exercises for reuse in lessons a
 
 ---
 
+## Default Parameters
+
+| Parameter | Value |
+|-----------|-------|
+| Occurrences per exercise | 10 (randomly generated) |
+
+---
+
 ## Exercise 1: Harmonic Interval Audiation
 
 **Objective**: Develop audiation by imagining each note before singing

@@ -2,6 +2,7 @@
 	import AccessibilitySection from '$lib/components/settings/AccessibilitySection.svelte';
 	import DifficultySection from '$lib/components/settings/DifficultySection.svelte';
 	import AccountDeletionSection from '$lib/components/settings/AccountDeletionSection.svelte';
+	import CreditsSection from '$lib/components/settings/CreditsSection.svelte';
 </script>
 
 <svelte:head>
@@ -20,6 +21,7 @@
 			<AccessibilitySection />
 			<DifficultySection />
 			<AccountDeletionSection />
+			<CreditsSection />
 		</div>
 	</div>
 </main>

@@ -196,7 +196,7 @@ This document provides the complete epic and story breakdown for melora, decompo
 **From Chapter 1 Level 1 - Pedagogical Requirements:**
 - Level 1 focuses on interval recognition: Unison, Octave, Fifth, Major Third
 - 6 Lessons: L1 (Unison/Octave), L2 (Melodic Fifth), L3 (Harmonic Fifth), L4 (Melodic Third), L5 (Harmonic Third), L6 (Assessment)
-- 9 Exercises: Ex1 (Audiation), Ex2 (Melodic ID), Ex3 (Harmonic ID), Ex4 (Resolution), Ex5 (Descending), Ex6 (Ascending), Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition), Ex9 (Interval in Melody)
+- 9 Exercises: Detailed descriptions available in [Level 1 - Exercise Specifications](#level-1---exercise-specifications)
 - Learning Objectives: O1 (ear differentiation), O2 (major triad notes), O3 (V→I resolution), O4 (3-note melody)
 - Audio patterns: Alternating L-H-L and H-L-H for melodic intervals
 - Support both harmonic (simultaneous) and melodic (successive) intervals
@@ -283,6 +283,245 @@ This document provides the complete epic and story breakdown for melora, decompo
 | FR62 | Epic 2 | Assess melodic recognition in context |
 
 ## Epic List
+
+### Level 1 - Exercise Specifications
+
+> **Source:** These exercise specifications are derived from [chapter-1-level-1.md](./chapter-1-level-1.md) and serve as the functional breakdown for implementation.
+
+This section provides detailed, unit descriptions for each exercise in Chapter 1: Introduction to Intervals & Triads (Level 1).
+
+---
+
+#### Exercise 1: Harmonic Interval Audiation
+
+**Exercise ID:** Ex1  
+**Type:** Active listening / Mental practice  
+**Objective:** Develop audiation by imagining each note before singing it  
+
+**Description:**  
+The user hears a reference note, then imagines (without singing) the second note of the interval before the system plays it. This exercise builds mental hearing skills and interval awareness.
+
+**Mechanics:**
+1. System plays a reference note (e.g., C4)
+2. User waits and internally imagines the target interval note (e.g., C5 - octave)
+3. System plays the target note
+4. User confirms whether their mental image was accurate
+
+**Parameters:**
+- Target intervals: Unison, Octave (Level 1)
+- Notes: Random from C, F, G, D, A (pentatonic base)
+- 10 occurrences per exercise session
+
+**Pedagogical purpose:** Develops "hearing in the head" (audiation) before physical vocal production. Foundation for all singing exercises.
+
+**Stories covering this exercise:** Story 2.8 (L1)
+
+---
+
+#### Exercise 2: Melodic Identification (Alternation)
+
+**Exercise ID:** Ex2  
+**Type:** Multiple choice identification  
+**Objective:** Recognize melodic intervals through alternation patterns  
+
+**Description:**  
+The system plays a three-note pattern alternating Low-High-Low (L-H-L) or High-Low-High (H-L-H). The user identifies the interval between the outer notes.
+
+**Mechanics:**
+1. System plays note 1 (Low or High)
+2. System plays note 2 (High or Low)
+3. System plays note 1 again (alternating)
+4. User selects: Unison, Second, Third, Fifth, or Octave
+
+**Parameters:**
+- Pattern: L-H-L or H-L-H (alternation)
+- Target intervals: Fifth/Octave (Lesson 2), Third/Fifth/Octave (Lesson 4)
+- Starting note varies by lesson
+
+**Pedagogical purpose:** Teaches interval recognition in melodic (successive) context. Alternation pattern helps isolate the interval.
+
+**Stories covering this exercise:** Story 2.9 (L2), Story 2.10 (L4)
+
+---
+
+#### Exercise 3: Harmonic Identification (Alternation)
+
+**Exercise ID:** Ex3  
+**Type:** Multiple choice identification  
+**Objective:** Recognize harmonic intervals through alternation patterns  
+
+**Description:**  
+Similar to Ex2 but for harmonic intervals. Two notes are played simultaneously, then the pattern alternates between simultaneous and melodic presentations.
+
+**Mechanics:**
+1. System plays both notes simultaneously (harmonic)
+2. System plays notes melodically (H-L-H or L-H-L pattern)
+3. System plays both notes simultaneously again
+4. User identifies: Unison, Second, Third, Fifth, or Octave
+
+**Parameters:**
+- Pattern: L-H-L or H-L-H alternation
+- Target intervals: Fifth/Octave/Unison (Lesson 3), Third/Fifth/Octave/Unison (Lesson 5)
+- Notes: Random from C, F, G, D, A
+
+**Pedagogical purpose:** Develops harmonic interval recognition. The alternation between harmonic and melodic helps reinforce the interval's sound.
+
+**Stories covering this exercise:** Story 2.8 (L1)
+
+---
+
+#### Exercise 4: Introduction to Resolution
+
+**Exercise ID:** Ex4  
+**Type:** Active singing  
+**Objective:** Feel and produce the V → I harmonic resolution  
+
+**Description:**  
+The system plays a dominant chord or arpeggio that naturally wants to resolve to the tonic. The user sings the root note to complete the resolution.
+
+**Mechanics:**
+1. System plays melody containing V chord (e.g., C-E-G-G with G as dominant)
+2. System pauses before resolution
+3. User sings the tonic note (e.g., C)
+4. System plays the resolution
+5. User feels the satisfying V → I resolution
+
+**Parameters:**
+- Starting notes: C, F, G, D, A
+- Patterns: C-E-G-G, C-C-G-G, F-A-C-C, G-G-D-D, D-A-D-D
+- Target: Root note of the tonic chord
+
+**Pedagogical purpose:** Introduces harmonic function and resolution. Builds understanding of tension and release in harmony.
+
+**Stories covering this exercise:** Story 2.9 (L2), Story 2.11 (L2-L3)
+
+---
+
+#### Exercise 5: Descending Interval Singing
+
+**Exercise ID:** Ex5  
+**Type:** Active singing with pitch detection  
+**Objective:** Accurately sing descending intervals  
+
+**Description:**  
+The system plays a starting note, then the user sings the descending interval (top note down to bottom note), and finally the system plays both notes to confirm.
+
+**Mechanics:**
+1. System plays starting note (e.g., G)
+2. User sings the descending interval (e.g., G-C-G)
+3. System evaluates pitch accuracy (±50 cents tolerance)
+4. System plays full descending pattern for confirmation
+
+**Parameters:**
+- Interval: Fifth (L2), Third (L4)
+- Starting notes: Random from available range
+- Patterns: G-C-G (descending fifth), E-C-E (descending third)
+
+**Pedagogical purpose:** Develops vocal accuracy for descending intervals. Builds muscle memory for interval distances.
+
+**Stories covering this exercise:** Story 2.9 (L2), Story 2.10 (L4)
+
+---
+
+#### Exercise 6: Ascending Interval Singing
+
+**Exercise ID:** Ex6  
+**Type:** Active singing with pitch detection  
+**Objective:** Accurately sing ascending intervals  
+
+**Description:**  
+The system plays a starting note, then the user sings the ascending interval (bottom note up to top note), and finally the system plays both notes to confirm.
+
+**Mechanics:**
+1. System plays starting note (e.g., C)
+2. User sings the ascending interval (e.g., C-G-C)
+3. System evaluates pitch accuracy (±50 cents tolerance)
+4. System plays full ascending pattern for confirmation
+
+**Parameters:**
+- Interval: Fifth (L2), Third (L4)
+- Starting notes: Random from available range
+- Patterns: C-G-C (ascending fifth), C-E-C (ascending third)
+
+**Pedagogical purpose:** Develops vocal accuracy for ascending intervals. Complements Exercise 5 for complete interval mastery.
+
+**Stories covering this exercise:** Story 2.9 (L2), Story 2.10 (L4)
+
+---
+
+#### Exercise 7: Melodic Recognition
+
+**Exercise ID:** Ex7  
+**Type:** Multiple choice assessment  
+**Objective:** Identify melodic intervals with varying starting notes  
+
+**Description:**  
+The system plays two notes melodically (one after another). The user identifies the interval. Unlike Ex2, starting notes vary randomly to test true recognition.
+
+**Mechanics:**
+1. System plays first note (random pitch within range)
+2. System plays second note
+3. User selects: Unison, Third, Fifth, or Octave
+
+**Parameters:**
+- Starting notes: Random (F, G, D, A)
+- Target intervals: Third, Fifth, Octave, Unison
+- Assessment mode: Varying starting notes
+
+**Pedagogical purpose:** Assesses interval recognition without pattern hints. Tests true melodic interval perception.
+
+**Stories covering this exercise:** Story 2.8 (L1), Story 2.12 (L6 Assessment)
+
+---
+
+#### Exercise 8: Harmonic Recognition
+
+**Exercise ID:** Ex8  
+**Type:** Multiple choice assessment  
+**Objective:** Identify harmonic intervals with varying starting notes  
+
+**Description:**  
+The system plays two notes simultaneously (harmonic). The user identifies the interval. Unlike Ex3, starting notes vary randomly to test true recognition.
+
+**Mechanics:**
+1. System plays both notes simultaneously
+2. User selects: Unison, Third, Fifth, or Octave
+
+**Parameters:**
+- Starting notes: Random (F, G, D, A)
+- Target intervals: Third, Fifth, Octave, Unison
+- Assessment mode: Simultaneous presentation
+
+**Pedagogical purpose:** Assesses harmonic interval recognition. Tests ability to perceive simultaneous pitch relationships.
+
+**Stories covering this exercise:** Story 2.8 (L1), Story 2.12 (L6 Assessment)
+
+---
+
+#### Exercise 9: Interval in a Melody
+
+**Exercise ID:** Ex9  
+**Type:** Melodic completion with singing  
+**Objective:** Identify and sing the missing interval in a melodic context  
+
+**Description:**  
+The system plays the beginning of a melody (two notes) and the user must complete it with the third note that forms the correct interval for the phrase.
+
+**Mechanics:**
+1. System plays two notes of a pattern (e.g., C-E-...)
+2. User sings the missing third note (e.g., G)
+3. System evaluates pitch accuracy
+4. System plays the complete melody
+
+**Parameters:**
+- Patterns: C-E-... (complete with G), F-A-... (complete with C), G-B-... (complete with D), D-F-... (complete with A), A-C-... (complete with E)
+- Target: Forms complete major triad or fifth
+
+**Pedagogical purpose:** Tests interval recognition in melodic context. Combines identification and production skills.
+
+**Stories covering this exercise:** Story 2.12 (L6 Assessment)
+
+---
 
 ### Epic 1: User Setup & Preferences
 **Goal:** Users can configure their experience and manage their account settings.
@@ -395,7 +634,7 @@ This document provides the complete epic and story breakdown for melora, decompo
 **Then** only exercises matching the selected type are displayed
 **And** the filter persists during the session
 
-#### Story 2.2: Audio Playback System
+#### Story 2.2: Audio Playback System (Tone.js + Salamander)
 **As a** user,
 **I want** to hear musical notes and chords played through the app,
 **So that** I can identify musical elements by ear.
@@ -404,12 +643,33 @@ This document provides the complete epic and story breakdown for melora, decompo
 
 **Given** the exercise requires playing a note
 **When** the user taps the play button
-**Then** the note plays via Web Audio API with < 100ms response time
+**Then** the note plays via Tone.js with < 100ms response time
+**And** the Salamander piano samples are used for high-quality audio
 
 **Given** the user adjusts the volume slider
 **When** they move the slider
 **Then** the audio volume changes in real-time
 **And** the volume preference is saved for future sessions
+
+**Given** the user is on their first session
+**When** they trigger audio for the first time
+**Then** Tone.js requests AudioContext permission
+**And** the Salamander samples begin loading
+**And** a loading indicator shows progress
+
+**Given** the user plays multiple notes quickly
+**When** they trigger notes in succession
+**Then** Tone.js handles polyphony efficiently
+**And** notes overlap naturally
+
+**Technical Implementation:**
+- Use `Tone.Sampler` with Salamander samples
+- Samples URL: `https://tonejs.github.io/audio/salamander/`
+- Note range: E2 to E5 (matching original MVP)
+- Attribution: CC-BY-3.0 (Salamander Sound Library by Alexander Holm)
+
+**Dependencies:**
+- `tone` package ^15.x
 
 #### Story 2.3: Exercise Launch and Completion
 **As a** user,
@@ -521,8 +781,14 @@ This document provides the complete epic and story breakdown for melora, decompo
 **Then** the user can correctly identify the interval
 **And** feedback is provided for each answer
 
-**Lessons covered:** L1 (Unison and Octave)
-**Exercises covered:** Ex1 (Audiation), Ex3 (Harmonic Identification), Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition)
+**Lessons covered:** L1 (Unison and Octave), L3 (Harmonic Fifth - Part B)
+**Exercises covered (Sequential Implementation Order):**
+- **TASK-1.1** - [Exercise 1: Harmonic Interval Audiation](#exercise-1-harmonic-interval-audiation) (L1-PartB, Octave only)
+- **TASK-1.6** - [Exercise 3: Harmonic Identification](#exercise-3-harmonic-identification-alternation) (L3-PartB, Fifth/Octave/Unison)
+- **TASK-1.13** - [Exercise 7: Melodic Recognition](#exercise-7-melodic-recognition) (L6-PhaseA, Assessment)
+- **TASK-1.14** - [Exercise 8: Harmonic Recognition](#exercise-8-harmonic-recognition) (L6-PhaseB, Assessment)
+
+**Implementation Reference:** See [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
 
 #### Story 2.9: Level 1 - Interval Recognition (Fifth)
 **As a** user,
@@ -551,7 +817,15 @@ This document provides the complete epic and story breakdown for melora, decompo
 **And** the system evaluates pitch accuracy
 
 **Lessons covered:** L2 (The Melodic Fifth), L3 (The Harmonic Fifth)
-**Exercises covered:** Ex2 (Melodic ID), Ex4 (Resolution), Ex5 (Descending), Ex6 (Ascending)
+**Exercises covered (Sequential Implementation Order):**
+- **TASK-1.2** - [Exercise 2: Melodic Identification](#exercise-2-melodic-identification-alternation) (L2-PartB, Fifth/Octave)
+- **TASK-1.3** - [Exercise 4: Introduction to Resolution](#exercise-4-introduction-to-resolution) (L2-PartC)
+- **TASK-1.4** - [Exercise 6: Ascending Singing](#exercise-6-ascending-interval-singing) (L2-PartD, Fifth)
+- **TASK-1.5** - [Exercise 5: Descending Singing](#exercise-5-descending-interval-singing) (L2-PartE, Fifth)
+- **TASK-1.6** - [Exercise 3: Harmonic Identification](#exercise-3-harmonic-identification-alternation) (L3-PartB, Fifth/Octave/Unison)
+- **TASK-1.7** - [Exercise 1: Audiation](#exercise-1-harmonic-interval-audiation) (L3-PartC, Fifth)
+
+**Implementation Reference:** See [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
 
 #### Story 2.10: Level 1 - Interval Recognition (Major Third)
 **As a** user,
@@ -575,7 +849,14 @@ This document provides the complete epic and story breakdown for melora, decompo
 **And** the system evaluates accuracy
 
 **Lessons covered:** L4 (The Melodic Major Third), L5 (The Harmonic Major Third)
-**Exercises covered:** Ex2 (Melodic ID), Ex5 (Descending), Ex6 (Ascending)
+**Exercises covered (Sequential Implementation Order):**
+- **TASK-1.8** - [Exercise 2: Melodic Identification](#exercise-2-melodic-identification-alternation) (L4-PartB, Third/Fifth/Octave)
+- **TASK-1.9** - [Exercise 6: Ascending Singing](#exercise-6-ascending-interval-singing) (L4-PartC, Third)
+- **TASK-1.10** - [Exercise 5: Descending Singing](#exercise-5-descending-interval-singing) (L4-PartD, Third)
+- **TASK-1.11** - [Exercise 3: Harmonic Identification](#exercise-3-harmonic-identification-alternation) (L5-PartB, All intervals)
+- **TASK-1.12** - [Exercise 1: Audiation](#exercise-1-harmonic-interval-audiation) (L5-PartC, Third)
+
+**Implementation Reference:** See [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
 
 #### Story 2.11: Level 1 - Harmonic Resolution (V→I)
 **As a** user,
@@ -594,8 +875,11 @@ This document provides the complete epic and story breakdown for melora, decompo
 **Then** the accuracy is evaluated
 **And** encouraging feedback is provided
 
-**Lessons covered:** L2, L3
-**Exercises covered:** Ex4 (Introduction to Resolution)
+**Lessons covered:** L2 (The Melodic Fifth), L3 (The Harmonic Fifth)
+**Exercises covered (Sequential Implementation Order):**
+- **TASK-1.3** - [Exercise 4: Introduction to Resolution](#exercise-4-introduction-to-resolution) (L2-PartC)
+
+**Implementation Reference:** See [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
 
 #### Story 2.12: Level 1 - Assessment & Synthesis
 **As a** user,
@@ -629,8 +913,13 @@ This document provides the complete epic and story breakdown for melora, decompo
 **And** progress is saved to IndexedDB
 **And** Chapter 1 completion is tracked
 
-**Lessons covered:** L6 (Synthesis)
-**Exercises covered:** Ex7 (Melodic Recognition), Ex8 (Harmonic Recognition), Ex9 (Interval in Melody)
+**Lessons covered:** L6 (Synthesis - Assessment)
+**Exercises covered (Sequential Implementation Order):**
+- **TASK-1.13** - [Exercise 7: Melodic Recognition](#exercise-7-melodic-recognition) (L6-PhaseA)
+- **TASK-1.14** - [Exercise 8: Harmonic Recognition](#exercise-8-harmonic-recognition) (L6-PhaseB)
+- **TASK-1.15** - [Exercise 9: Interval in Melody](#exercise-9-interval-in-a-melody) (L6-PhaseC)
+
+**Implementation Reference:** See [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
 
 ### Epic 3: Progress Tracking
 **Goal:** Users can track their musical development and view detailed statistics.
@@ -978,6 +1267,58 @@ This document provides the complete epic and story breakdown for melora, decompo
 - Story 3.6: Progress Sync (Post-MVP)
 - Story 5.5: Content Localization (Post-MVP)
 - Story 6.5: Push Notifications (Post-MVP)
+
+---
+
+## Chapter 1 Level 1 - Sprint Implementation Reference
+
+> **Reference Documents:**
+> - [sprint-backlog-chapter-1-level-1.md](./sprint-backlog-chapter-1-level-1.md)
+> - [sprint-status.yaml](../../implementation-artifacts/sprint-status.yaml)
+
+### Sequential Task Order (15 Tasks)
+
+| # | Task ID | Story | Exercise | Lesson Part | Status |
+|---|---------|-------|----------|-------------|--------|
+| 1 | TASK-1.1 | 2.8 | Ex1 (Audiation) | L1-PartB | ⬜ Pending |
+| 2 | TASK-1.2 | 2.9 | Ex2 (Melodic ID) | L2-PartB | ⬜ Pending |
+| 3 | TASK-1.3 | 2.9, 2.11 | Ex4 (Resolution) | L2-PartC | ⬜ Pending |
+| 4 | TASK-1.4 | 2.9 | Ex6 (Ascending) | L2-PartD | ⬜ Pending |
+| 5 | TASK-1.5 | 2.9 | Ex5 (Descending) | L2-PartE | ⬜ Pending |
+| 6 | TASK-1.6 | 2.8, 2.9 | Ex3 (Harmonic ID) | L3-PartB | ⬜ Pending |
+| 7 | TASK-1.7 | 2.9 | Ex1 (Audiation) | L3-PartC | ⬜ Pending |
+| 8 | TASK-1.8 | 2.10 | Ex2 (Melodic ID) | L4-PartB | ⬜ Pending |
+| 9 | TASK-1.9 | 2.10 | Ex6 (Ascending) | L4-PartC | ⬜ Pending |
+| 10 | TASK-1.10 | 2.10 | Ex5 (Descending) | L4-PartD | ⬜ Pending |
+| 11 | TASK-1.11 | 2.10 | Ex3 (Harmonic ID) | L5-PartB | ⬜ Pending |
+| 12 | TASK-1.12 | 2.10 | Ex1 (Audiation) | L5-PartC | ⬜ Pending |
+| 13 | TASK-1.13 | 2.12 | Ex7 (Melodic Rec) | L6-PhaseA | ⬜ Pending |
+| 14 | TASK-1.14 | 2.12 | Ex8 (Harmonic Rec) | L6-PhaseB | ⬜ Pending |
+| 15 | TASK-1.15 | 2.12 | Ex9 (In Melody) | L6-PhaseC | ⬜ Pending |
+
+### Story to Task Mapping
+
+| Story | Tasks |
+|-------|-------|
+| Story 2.8 | TASK-1.1, TASK-1.6, TASK-1.13, TASK-1.14 |
+| Story 2.9 | TASK-1.2, TASK-1.3, TASK-1.4, TASK-1.5, TASK-1.6, TASK-1.7 |
+| Story 2.10 | TASK-1.8, TASK-1.9, TASK-1.10, TASK-1.11, TASK-1.12 |
+| Story 2.11 | TASK-1.3 |
+| Story 2.12 | TASK-1.13, TASK-1.14, TASK-1.15 |
+
+### Component Reuse Strategy
+
+| Component | Used in Tasks | Reuse Type |
+|-----------|--------------|------------|
+| Ex1Audiation.svelte | TASK-1.1, TASK-1.7, TASK-1.12 | Full reuse (configurable) |
+| Ex2MelodicIdentification.svelte | TASK-1.2, TASK-1.8 | Extended (add Third) |
+| Ex3HarmonicIdentification.svelte | TASK-1.6, TASK-1.11 | Extended (add Third) |
+| Ex4Resolution.svelte | TASK-1.3 | New |
+| Ex5DescendingSinging.svelte | TASK-1.5, TASK-1.10 | Extended (add Third) |
+| Ex6AscendingSinging.svelte | TASK-1.4, TASK-1.9 | Extended (add Third) |
+| Ex7MelodicRecognition.svelte | TASK-1.13 | New |
+| Ex8HarmonicRecognition.svelte | TASK-1.14 | New |
+| Ex9IntervalInMelody.svelte | TASK-1.15 | New |
 
 ---
 

@@ -29,6 +29,14 @@
 					{ id: 'tritone', label: 'Tritone', correct: false },
 					{ id: 'perfect5', label: 'Perfect 5th', correct: false },
 				];
+			case 'interval-recognition-unison-octave':
+			case 'harmonic-identification':
+			case 'melodic-identification':
+				// Level 1: Unison and Octave only
+				return [
+					{ id: 'Unison', label: 'Unison', correct: true },
+					{ id: 'Octave', label: 'Octave', correct: false },
+				];
 			case 'chord-identification':
 				return [
 					{ id: 'major', label: 'Major', correct: true },
@@ -56,6 +64,9 @@
 					{ id: 'lower', label: 'Second note is lower', correct: false },
 					{ id: 'same', label: 'Both notes are the same', correct: true },
 				];
+			case 'audiation':
+				// Audiation is self-assessed - no multiple choice
+				return [];
 			default:
 				return [];
 		}

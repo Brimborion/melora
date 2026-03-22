@@ -15,7 +15,11 @@ export type ExerciseType =
 	| 'note-identification'
 	| 'chord-identification'
 	| 'melody-repetition'
-	| 'pitch-comparison';
+	| 'pitch-comparison'
+	| 'interval-recognition-unison-octave'
+	| 'audiation'
+	| 'harmonic-identification'
+	| 'melodic-identification';
 
 /**
  * Game level configuration

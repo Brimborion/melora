@@ -34,6 +34,12 @@ status: validated
 
 > **Note**: Detailed exercise descriptions are available in the separate document: `exercises.md`
 
+## Default Parameters
+
+| Parameter | Value |
+|-----------|-------|
+| Occurrences per exercise | 10 (randomly generated) |
+
 ---
 
 ## Exercise 1: Harmonic Interval Audiation

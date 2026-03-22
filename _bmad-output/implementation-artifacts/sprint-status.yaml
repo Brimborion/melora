@@ -1,8 +1,9 @@
-# generated: 15-03-2026 00:00
+# generated: 22-03-2026 00:00
+# last_updated: 22-03-2026 00:00
 # project: melora
-# project_key: NOKEY
+# project_key: MELORA
 # tracking_system: file-system
-# story_location: "{project-root}/_bmad-output/implementation-artifacts"
+# story_location: _bmad-output/implementation-artifacts
 
 # STATUS DEFINITIONS:
 # ==================
@@ -33,11 +34,12 @@
 # - SM typically creates next story after previous one is 'done' to incorporate learnings
 # - Dev moves story to 'review', then runs code-review (fresh context, different LLM recommended)
 
-generated: 15-03-2026 00:00
+generated: 22-03-2026 00:00
+last_updated: 22-03-2026 00:00
 project: melora
-project_key: NOKEY
+project_key: MELORA
 tracking_system: file-system
-story_location: "{project-root}/_bmad-output/implementation-artifacts"
+story_location: _bmad-output/implementation-artifacts
 
 development_status:
   # Epic 1: User Setup & Preferences
@@ -58,7 +60,7 @@ development_status:
   2-5-real-time-pitch-detection: done
   2-6-microphone-permission-handling: done
   2-7-exercise-replay-and-explanations: done
-  2-8-level-1-interval-recognition-unison-octave: backlog
+  2-8-level-1-interval-recognition-unison-octave: ready-for-dev
   2-9-level-1-interval-recognition-fifth: backlog
   2-10-level-1-interval-recognition-major-third: backlog
   2-11-level-1-harmonic-resolution-vi: backlog
@@ -95,10 +97,319 @@ development_status:
   epic-5-retrospective: optional
 
   # Epic 6: System Infrastructure
-  epic-6: backlog
-  6-1-offline-resource-caching: backlog
-  6-2-app-updates: backlog
-  6-3-error-handling-and-recovery: backlog
-  6-4-performance-optimization: backlog
-  6-5-push-notifications-post-mvp: backlog
+  epic-6: done
+  6-1-offline-resource-caching: done
+  6-2-app-updates: done
+  6-3-error-handling-and-recovery: done
+  6-4-performance-optimization: done
   epic-6-retrospective: optional
+
+# ================================================================================
+# SPRINT BACKLOG - Chapter 1 Level 1
+# ================================================================================
+# Reference: _bmad-output/planning-artifacts/sprint-backlog-chapter-1-level-1.md
+#
+# Sequential Implementation Order:
+# Each task implements one Part of a Lesson in Chapter 1 Level 1.
+# Tasks must be completed in order (1 → 2 → 3 → ... → 15)
+#
+# Sprint Overview:
+#   - Sprint Goal: Implement all exercises from Chapter 1 Level 1
+#   - Total Tasks: 15
+#   - Total Estimated Hours: 56
+#   - Duration: 5 weeks
+
+sprint_chapter_1_level_1:
+  sprint_name: "Sprint 1 - Chapter 1 Level 1"
+  sprint_goal: "Implement all exercises from Chapter 1 Level 1 in sequential pedagogical order"
+  reference_document: "_bmad-output/planning-artifacts/sprint-backlog-chapter-1-level-1.md"
+  total_tasks: 15
+  completed_tasks: 0
+  total_estimated_hours: 56
+  start_date: "2026-03-22"
+  target_end_date: "2026-04-25"
+
+  # Week 1: Lesson 1 & Lesson 2 Parts B-D
+  week_1:
+    name: "Week 1 - Foundation: Audiation & Fifth"
+    tasks:
+      - task_id: task-1-1
+        story: 2-8
+        exercise: Ex1
+        lesson: L1-PartB
+        title: "Harmonic Interval Audiation (Octave)"
+        description: "Develop audiation by imagining the octave before hearing it"
+        component: Ex1Audiation.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 1
+        dependencies: []
+
+      - task_id: task-1-2
+        story: 2-9
+        exercise: Ex2
+        lesson: L2-PartB
+        title: "Melodic Identification (Fifth/Octave)"
+        description: "Recognize melodic intervals through alternation patterns"
+        component: Ex2MelodicIdentification.svelte
+        patterns: 8
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 2
+        dependencies: [task-1-1]
+
+      - task_id: task-1-3
+        story: 2-9
+        exercise: Ex4
+        lesson: L2-PartC
+        title: "Introduction to Resolution (V→I)"
+        description: "Feel and produce the V → I harmonic resolution"
+        component: Ex4Resolution.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 6
+        implementation_order: 3
+        dependencies: [task-1-2]
+
+      - task_id: task-1-4
+        story: 2-9
+        exercise: Ex6
+        lesson: L2-PartD
+        title: "Ascending Fifth Singing"
+        description: "Sing ascending fifth intervals accurately"
+        component: Ex6AscendingSinging.svelte
+        patterns: 4
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 4
+        dependencies: [task-1-3]
+
+  # Week 2: Lesson 2 Part E & Lesson 3
+  week_2:
+    name: "Week 2 - Harmonic Exploration"
+    tasks:
+      - task_id: task-1-5
+        story: 2-9
+        exercise: Ex5
+        lesson: L2-PartE
+        title: "Descending Fifth Singing"
+        description: "Sing descending fifth intervals accurately"
+        component: Ex5DescendingSinging.svelte
+        patterns: 4
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 5
+        dependencies: [task-1-4]
+
+      - task_id: task-1-6
+        story: 2-8
+        exercise: Ex3
+        lesson: L3-PartB
+        title: "Harmonic Identification (Fifth/Octave/Unison)"
+        description: "Recognize harmonic intervals through alternation patterns"
+        component: Ex3HarmonicIdentification.svelte
+        patterns: 8
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 6
+        dependencies: [task-1-5]
+
+      - task_id: task-1-7
+        story: 2-9
+        exercise: Ex1
+        lesson: L3-PartC
+        title: "Harmonic Interval Audiation (Fifth)"
+        description: "Develop audiation for the fifth interval"
+        component: Ex1Audiation.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 2
+        implementation_order: 7
+        dependencies: [task-1-6]
+        reuse_component: task-1-1
+
+  # Week 3: Lesson 4
+  week_3:
+    name: "Week 3 - Major Third Introduction"
+    tasks:
+      - task_id: task-1-8
+        story: 2-10
+        exercise: Ex2
+        lesson: L4-PartB
+        title: "Melodic Identification (Third/Fifth/Octave)"
+        description: "Recognize third intervals in melodic context"
+        component: Ex2MelodicIdentification.svelte
+        patterns: 8
+        status: backlog
+        estimated_hours: 3
+        implementation_order: 8
+        dependencies: [task-1-7]
+        extends_component: task-1-2
+
+      - task_id: task-1-9
+        story: 2-10
+        exercise: Ex6
+        lesson: L4-PartC
+        title: "Ascending Third Singing"
+        description: "Sing ascending third intervals accurately"
+        component: Ex6AscendingSinging.svelte
+        patterns: 3
+        status: backlog
+        estimated_hours: 3
+        implementation_order: 9
+        dependencies: [task-1-8]
+        extends_component: task-1-4
+
+      - task_id: task-1-10
+        story: 2-10
+        exercise: Ex5
+        lesson: L4-PartD
+        title: "Descending Third Singing"
+        description: "Sing descending third intervals accurately"
+        component: Ex5DescendingSinging.svelte
+        patterns: 3
+        status: backlog
+        estimated_hours: 3
+        implementation_order: 10
+        dependencies: [task-1-9]
+        extends_component: task-1-5
+
+  # Week 4: Lesson 5
+  week_4:
+    name: "Week 4 - Harmonic Third Mastery"
+    tasks:
+      - task_id: task-1-11
+        story: 2-10
+        exercise: Ex3
+        lesson: L5-PartB
+        title: "Harmonic Identification (All Intervals)"
+        description: "Recognize all intervals in harmonic context"
+        component: Ex3HarmonicIdentification.svelte
+        patterns: 8
+        status: backlog
+        estimated_hours: 3
+        implementation_order: 11
+        dependencies: [task-1-10]
+        extends_component: task-1-6
+
+      - task_id: task-1-12
+        story: 2-10
+        exercise: Ex1
+        lesson: L5-PartC
+        title: "Harmonic Interval Audiation (Third)"
+        description: "Develop audiation for the third interval"
+        component: Ex1Audiation.svelte
+        patterns: 3
+        status: backlog
+        estimated_hours: 2
+        implementation_order: 12
+        dependencies: [task-1-11]
+        reuse_component: task-1-1
+
+  # Week 5: Lesson 6 - Assessment
+  week_5:
+    name: "Week 5 - Assessment & Synthesis"
+    tasks:
+      - task_id: task-1-13
+        story: 2-12
+        exercise: Ex7
+        lesson: L6-PhaseA
+        title: "Melodic Recognition Assessment"
+        description: "Assess melodic interval recognition with varying starting notes"
+        component: Ex7MelodicRecognition.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 13
+        dependencies: [task-1-12]
+
+      - task_id: task-1-14
+        story: 2-12
+        exercise: Ex8
+        lesson: L6-PhaseB
+        title: "Harmonic Recognition Assessment"
+        description: "Assess harmonic interval recognition"
+        component: Ex8HarmonicRecognition.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 4
+        implementation_order: 14
+        dependencies: [task-1-13]
+
+      - task_id: task-1-15
+        story: 2-12
+        exercise: Ex9
+        lesson: L6-PhaseC
+        title: "Interval in Melody Application"
+        description: "Apply interval recognition in melodic context"
+        component: Ex9IntervalInMelody.svelte
+        patterns: 5
+        status: backlog
+        estimated_hours: 6
+        implementation_order: 15
+        dependencies: [task-1-14]
+
+  # Component Architecture Summary
+  components:
+    new:
+      - name: Ex4Resolution.svelte
+        used_in: [task-1-3]
+        description: "Introduction to Resolution - singing with pitch detection"
+      - name: Ex7MelodicRecognition.svelte
+        used_in: [task-1-13]
+        description: "Melodic Recognition Assessment"
+      - name: Ex8HarmonicRecognition.svelte
+        used_in: [task-1-14]
+        description: "Harmonic Recognition Assessment"
+      - name: Ex9IntervalInMelody.svelte
+        used_in: [task-1-15]
+        description: "Interval in Melody Application"
+
+    reusable:
+      - name: Ex1Audiation.svelte
+        used_in: [task-1-1, task-1-7, task-1-12]
+        configurable: true
+      - name: Ex5DescendingSinging.svelte
+        used_in: [task-1-5, task-1-10]
+        extends: true
+      - name: Ex6AscendingSinging.svelte
+        used_in: [task-1-4, task-1-9]
+        extends: true
+
+    extensible:
+      - name: Ex2MelodicIdentification.svelte
+        base: task-1-2
+        extended: task-1-8
+        change: "Add Third as possible answer"
+      - name: Ex3HarmonicIdentification.svelte
+        base: task-1-6
+        extended: task-1-11
+        change: "Add Third as possible answer"
+
+  # Story Coverage Summary
+  story_coverage:
+    "2-8": [task-1-1, task-1-6, task-1-13, task-1-14]
+    "2-9": [task-1-2, task-1-3, task-1-4, task-1-5, task-1-6, task-1-7]
+    "2-10": [task-1-8, task-1-9, task-1-10, task-1-11, task-1-12]
+    "2-11": [task-1-3]
+    "2-12": [task-1-13, task-1-14, task-1-15]
+
+  # Exercise Type Summary
+  exercise_summary:
+    Ex1_Audiation: [task-1-1, task-1-7, task-1-12]
+    Ex2_MelodicID: [task-1-2, task-1-8]
+    Ex3_HarmonicID: [task-1-6, task-1-11]
+    Ex4_Resolution: [task-1-3]
+    Ex5_Descending: [task-1-5, task-1-10]
+    Ex6_Ascending: [task-1-4, task-1-9]
+    Ex7_MelodicRec: [task-1-13]
+    Ex8_HarmonicRec: [task-1-14]
+    Ex9_InMelody: [task-1-15]
+
+  # Learning Objectives Coverage
+  learning_objectives:
+    O1: [task-1-2, task-1-6, task-1-8, task-1-11, task-1-13, task-1-14]
+    O2: [task-1-3, task-1-15]
+    O3: [task-1-3]
+    O4: [task-1-4, task-1-5, task-1-9, task-1-10, task-1-15]

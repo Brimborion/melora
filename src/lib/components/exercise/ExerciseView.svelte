@@ -2,7 +2,6 @@
 	import type { Level } from '$lib/types/game';
 	import { exerciseStore } from '$lib/stores/exercise.svelte';
 	import { audioStore } from '$lib/stores/audio.svelte';
-	import { audioContextManager } from '$lib/audio';
 	import { exerciseEngine } from '$lib/game/ExerciseEngine';
 	import QuestionDisplay from './QuestionDisplay.svelte';
 	import AnswerInput from './AnswerInput.svelte';

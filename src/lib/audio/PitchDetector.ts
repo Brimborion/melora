@@ -1,6 +1,8 @@
 // PitchDetector service for real-time pitch detection
 // Uses autocorrelation algorithm for pitch detection from microphone input
 
+import * as Tone from 'tone';
+
 /**
  * Pitch information returned by the detector
  */
@@ -129,14 +131,9 @@ export class PitchDetector {
 			return; // Already running
 		}
 
-		// Get or create AudioContext using the singleton pattern
-		const { getAudioContext } = await import('./AudioEngine');
-		this.audioContext = getAudioContext();
-
-		// Resume if suspended (browser autoplay policy)
-		if (this.audioContext.state === 'suspended') {
-			await this.audioContext.resume();
-		}
+		// Get AudioContext from Tone.js
+		await Tone.start();
+		this.audioContext = Tone.getContext().rawContext as AudioContext;
 
 		// Create analyser node
 		this.analyserNode = this.audioContext.createAnalyser();

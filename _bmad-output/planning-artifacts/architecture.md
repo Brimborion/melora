@@ -82,6 +82,8 @@ Existing technical preferences documented in `project-context.md`:
 | dexie | ^4.x | IndexedDB wrapper |
 | Vitest | ^3.x | Testing |
 | Playwright | ^1.50.x | E2E testing |
+| **Tone.js** | **^15.x** | **Audio engine with Salamander sampler** |
+| **Salamander Sound Library** | **CC-BY-3.0** | **High-quality piano samples** |
 
 ### Selected Starter: SvelteKit
 
@@ -139,7 +141,7 @@ pnpx sv create melora --template=minimal --types=ts
 
 **Important Decisions (Shape Architecture):**
 - Hosting: Vercel
-- Offline Strategy: Pre-cache piano samples, lazy-load others
+- Offline Strategy: Salamander samples cached via Service Worker, other assets pre-cached
 
 **Deferred Decisions (Post-MVP):**
 - Multi-instrument support (lazy-load after MVP)
@@ -203,6 +205,44 @@ pnpx sv create melora --template=minimal --types=ts
 - No environment variables required (local-only)
 - No secrets needed
 
+**Offline Strategy:**
+
+**Salamander Sound Library (CDN-hosted):**
+- Samples loaded from: `https://tonejs.github.io/audio/salamander/`
+- Service Worker caches Salamander samples after first load
+- CacheFirst strategy with 30-day expiration
+- Offline-first: After initial load, app works fully offline
+
+```typescript
+// vite.config.ts - PWA configuration
+import { VitePWA } from 'vite-plugin-pwa';
+
+export default defineConfig({
+  plugins: [
+    sveltekit(),
+    VitePWA({
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/tonejs\.github\.io\/audio\/salamander\/.*/i,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'salamander-samples',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 30 * 24 * 60 * 60 // 30 days
+              }
+            }
+          }
+        ]
+      }
+    })
+  ]
+});
+```
+
+**Note:** Tone.js requires `Tone.start()` after user interaction (autoplay policy). This is handled automatically in ToneAudioEngine.
+
 ### Decision Impact Analysis
 
 **Implementation Sequence:**
@@ -255,32 +295,71 @@ src/
 │   ├── types/           # TypeScript types
 │   └── utils/           # Helper functions
 ├── routes/              # SvelteKit routing
-├── static/audio/        # Piano samples (pre-cached)
+├── static/audio/        # Audio assets (Salamander loaded from CDN)
 └── tests/               # E2E tests (Playwright)
 ```
 
 ### Audio Patterns (Critical)
 
-**AudioContext Singleton Pattern:**
+**Tone.js + Salamander Pattern (REQUIRED):**
 
 ```typescript
-// ✅ CORRECT - Single instance
-let audioContext: AudioContext | null = null;
-function getAudioContext(): AudioContext {
-  if (!audioContext) {
-    audioContext = new AudioContext();
+// ✅ CORRECT - Tone.js Sampler with Salamander
+import * as Tone from 'tone';
+
+export class ToneAudioEngine {
+  private sampler: Tone.Sampler | null = null;
+  private initialized = false;
+
+  async initialize(): Promise<void> {
+    if (this.initialized) return;
+    
+    await Tone.start();
+    
+    this.sampler = new Tone.Sampler({
+      urls: {
+        C2: 'C2.mp3', D2: 'D2.mp3', E2: 'E2.mp3', F2: 'F2.mp3',
+        G2: 'G2.mp3', A2: 'A2.mp3', B2: 'B2.mp3',
+        C3: 'C3.mp3', D3: 'D3.mp3', E3: 'E3.mp3', F3: 'F3.mp3',
+        G3: 'G3.mp3', A3: 'A3.mp3', B3: 'B3.mp3',
+        C4: 'C4.mp3', D4: 'D4.mp3', E4: 'E4.mp3', F4: 'F4.mp3',
+        G4: 'G4.mp3', A4: 'A4.mp3', B4: 'B4.mp3',
+        C5: 'C5.mp3', D5: 'D5.mp3', E5: 'E5.mp3'
+      },
+      baseUrl: 'https://tonejs.github.io/audio/salamander/',
+      onload: () => {
+        console.log('Salamander samples loaded');
+        this.initialized = true;
+      }
+    }).toDestination();
   }
-  return audioContext;
+
+  async playNote(note: string, duration: string = '8n'): Promise<void> {
+    if (!this.sampler) {
+      throw new Error('AudioEngine not initialized');
+    }
+    await Tone.start();
+    this.sampler.triggerAttackRelease(note, duration);
+  }
 }
 
-// ❌ WRONG - Module level creation
-const audioContext = new AudioContext(); // CONFLIT!
+// ❌ WRONG - Native Web Audio API for sample playback
+const audioContext = new AudioContext();
+const buffer = await fetch('/audio/C4.webm');
 ```
+
+**Pitch Detection (unchanged):**
+- Continues to use native Web Audio API directly
+- `PitchDetector` remains unchanged
 
 **Audio Service Isolation:**
 - All audio logic in `src/lib/audio/` services
 - NEVER in Svelte components
-- Handle suspended state before playback
+- Handle suspended state via `Tone.start()`
+
+**Salamander License:**
+- CC-BY-3.0 - Attribution required
+- Add credits in app (settings/about): "Salamander Sound Library by Alexander Holm"
 
 ### State Management Patterns
 
@@ -320,16 +399,20 @@ const db2 = new MeloraDB(); // CONFLIT!
 3. Use Svelte 5 runes, not legacy reactivity
 4. Use single `db` instance from `src/lib/db/`
 5. Keep audio logic in services, not components
-6. Test with fake-indexeddb for unit tests
+6. Use **Tone.js** for audio playback (NOT native Web Audio API)
+7. Include **Salamander attribution** in app credits (CC-BY-3.0)
+8. Test with fake-indexeddb for unit tests
 
 ### Pattern Examples
 
 **Good Examples:**
-- `export class AudioEngine` with singleton pattern
+- `export class ToneAudioEngine` with Tone.Sampler
 - `let score = $state(0)` in Svelte components
 - `import { db } from '$lib/db/database'` for all DB access
+- Salamander attribution in app credits
 
 **Anti-Patterns:**
+- Using native Web Audio API for sample playback
 - Creating AudioContext at module level
 - Mixing `$state` with `$:` reactive statements
 - Using localStorage for structured data
@@ -345,10 +428,9 @@ melora/
 ├── src/
 │   ├── lib/
 │   │   ├── audio/
-│   │   │   ├── AudioEngine.ts       # Audio playback service
-│   │   │   ├── SampleLibrary.ts     # Sample loading/caching
-│   │   │   ├── PitchDetector.ts    # Pitch detection
-│   │   │   └── index.ts            # Barrel export
+│   │   │   ├── ToneAudioEngine.ts    # Tone.js + Salamander audio service
+│   │   │   ├── PitchDetector.ts      # Pitch detection (Web Audio API)
+│   │   │   └── index.ts              # Barrel export
 │   │   ├── db/
 │   │   │   ├── database.ts          # Dexie single instance
 │   │   │   ├── repositories/        # Data access
@@ -402,7 +484,7 @@ melora/
 
 | FR Category | Directory | Key Files |
 |-------------|-----------|-----------|
-| Audio Processing | `src/lib/audio/` | AudioEngine, PitchDetector, SampleLibrary |
+| Audio Processing | `src/lib/audio/` | ToneAudioEngine (Salamander), PitchDetector |
 | Progress Tracking | `src/lib/db/` | database.ts, repositories |
 | Game Experience | `src/lib/game/` | GameEngine, Scoring, Progress |
 | Music Theory | `src/lib/music/` | intervals, chords, scales |
@@ -412,9 +494,10 @@ melora/
 ### Architectural Boundaries
 
 **Audio Service Boundary:**
-- AudioEngine does NOT access Svelte components
+- ToneAudioEngine does NOT access Svelte components
 - Communication via returned promises
-- AudioContext managed outside components
+- Tone.js manages AudioContext (via `Tone.start()`)
+- PitchDetector uses native Web Audio API directly
 
 **Database Boundary:**
 - Single access point: `db` exported from `$lib/db`
@@ -434,12 +517,12 @@ melora/
 - State: Svelte 5 runes with getter/setter
 
 **External Integrations:**
-- None (local-only PWA)
-- Audio samples: local static files
+- Salamander Sound Library: CDN-hosted samples (CC-BY-3.0)
+- No external APIs
 
 **Data Flow:**
 ```
-User Action → Component → Store/Service → Database/Audio
+User Action → Component → Store/Service → ToneAudioEngine (Salamander samples)
 ```
 
 ## Architecture Validation Results

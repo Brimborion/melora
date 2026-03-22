@@ -44,10 +44,19 @@ _This file contains critical rules and patterns that AI agents must follow when 
 
 ### Audio
 
-| Technology | Format | Purpose |
-|------------|--------|---------|
-| Web Audio API | Native | Audio playback engine |
-| WebM/Opus | .webm | Audio samples (optimized compression) |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Tone.js | ^15.x | Audio engine with built-in sampler support |
+| Salamander Sound Library | CC-BY-3.0 | High-quality piano samples (E2-E5) |
+| Web Audio API | Native | Underlying audio context (via Tone.js) |
+
+### Salamander Sound Library - License
+
+- **Licence:** CC-BY-3.0
+- **Attribution requise:** "Salamander Sound Library by Alexander Holm"
+- **Source:** https://tonejs.github.io/audio/salamander/
+- **Usage:** Piano samples for MVP (E2-E5 range)
+- **Note:** Attribution must be displayed in app credits (settings/about)
 
 ### Testing
 
@@ -760,29 +769,35 @@ import { AudioEngine } from '$lib/audio';
 
 ## Critical Anti-Patterns & Gotchas
 
-### Audio-Specific Anti-Patterns
+### Audio-Specific Anti-Patterns (Tone.js)
 
 ```typescript
-// ❌ NEVER create AudioContext at module level
-const audioContext = new AudioContext(); // NO - created before user interaction
+// ❌ DON'T use native Web Audio API directly for sample playback
+const audioContext = new AudioContext();
+const buffer = await audioContext.decodeAudioData(data);
 
-// ✅ Create on user interaction
-let audioContext: AudioContext | null = null;
-function getAudioContext(): AudioContext {
-  if (!audioContext) {
-    audioContext = new AudioContext();
-  }
-  return audioContext;
-}
+// ✅ USE Tone.js for sample playback with Salamander
+import * as Tone from 'tone';
+const sampler = new Tone.Sampler({
+  urls: { C4: 'C4.mp3', 'D#4': 'Ds4.mp3', 'F#4': 'Fs4.mp3', A4: 'A4.mp3' },
+  baseUrl: 'https://tonejs.github.io/audio/salamander/',
+}).toDestination();
+await Tone.start();
+sampler.triggerAttackRelease('C4', '8n');
 
-// ❌ NEVER assume AudioContext is running
-audioContext.createBufferSource().start(); // May fail if suspended
+// ❌ NEVER create AudioContext at module level (legacy pattern)
+const audioContext = new AudioContext(); // NO
 
-// ✅ Always check and resume
-async function ensureAudioReady(ctx: AudioContext): Promise<void> {
-  if (ctx.state === 'suspended') {
-    await ctx.resume();
-  }
+// ✅ Use Tone.js context management
+await Tone.start(); // Handles AudioContext creation/resume
+
+// ❌ DON'T play audio without user interaction
+sampler.triggerAttackRelease('C4', '8n'); // May fail if AudioContext suspended
+
+// ✅ Always ensure Tone is started
+async function playNote(note: string): Promise<void> {
+  await Tone.start(); // Required for browser autoplay policy
+  sampler.triggerAttackRelease(note, '8n');
 }
 ```
 
@@ -917,11 +932,13 @@ let processed = $derived.by(() => {
 
 Before submitting code, verify:
 
-- [ ] No AudioContext created at module level
-- [ ] AudioContext.resume() called before playback
+- [x] Using Tone.js for audio playback (NOT native Web Audio API)
+- [x] Tone.start() called before audio playback (autoplay policy)
+- [x] Salamander samples loaded via Tone.Sampler
+- [x] Salamander attribution included in app credits (CC-BY-3.0)
 - [ ] Using Svelte 5 runes, not legacy reactivity
 - [ ] IndexedDB accessed via single `db` instance
-- [ ] Tests mock Web Audio API (unit) or use real browser (E2E)
+- [ ] Tests mock audio appropriately (unit) or use real browser (E2E)
 - [ ] E2E tests reset IndexedDB between tests
 - [ ] No external API calls (local-only app)
 - [ ] PWA assets listed in vite-plugin-pwa config

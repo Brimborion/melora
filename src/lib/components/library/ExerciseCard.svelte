@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	import type { Level } from '$lib/types';
 	import ExerciseProgress from './ExerciseProgress.svelte';
 
@@ -23,6 +24,8 @@
 				return 'Notes';
 			case 'pitch-comparison':
 				return 'Pitch';
+			case 'interval-recognition-unison-octave':
+				return 'Intervals';
 			default:
 				return level.exerciseType;
 		}
@@ -49,13 +52,18 @@
 		`${level.title}, ${exerciseTypeLabel}, Chapter ${level.chapter}, ${difficultyLabel}, ` +
 		(completed ? 'Completed' : bestScore > 0 ? `Best score ${bestScore} percent` : 'Not started')
 	);
+
+	// Build the URL for this level
+	let levelUrl = $derived(`${base}/game/${level.id}`);
 </script>
 
-<article 
+<a 
+	href={levelUrl}
 	class="exercise-card"
 	class:exercise-card--completed={completed}
 	class:exercise-card--locked={!level.unlocked}
 	aria-label={cardAriaLabel}
+	tabindex="0"
 >
 	<div class="exercise-card__header">
 		<span class="exercise-card__chapter">Chapter {level.chapter}</span>
@@ -94,7 +102,7 @@
 			<span>Complete previous levels to unlock</span>
 		</div>
 	{/if}
-</article>
+</a>
 
 <style>
 	.exercise-card {
@@ -108,6 +116,8 @@
 		transition: transform 0.2s ease, box-shadow 0.2s ease;
 		position: relative;
 		overflow: hidden;
+		text-decoration: none;
+		color: inherit;
 	}
 
 	.exercise-card:hover {
@@ -115,7 +125,7 @@
 		box-shadow: 0 4px 12px rgba(212, 175, 55, 0.15);
 	}
 
-	.exercise-card:focus-within {
+	.exercise-card:focus {
 		outline: 2px solid var(--color-accent, #D4AF37);
 		outline-offset: 2px;
 	}
